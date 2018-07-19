@@ -4,7 +4,7 @@ class RailTrails::Scraper
   def initialize(homepage_url)
     self.homepage = homepage_url
   end
-  
+  #need mo coffee
   def scrape
     doc = Nokogiri::HTML(open(self.homepage))
     doc.css("div.trails div.row").each do |trail|
