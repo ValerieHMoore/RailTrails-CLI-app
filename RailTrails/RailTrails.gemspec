@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Valerie Moore'"]
   spec.email         = ["'periwinkle17@outlook.com'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "This CLI will provide a list of nearby rail trails when a user inputs their zip code."
+  spec.description   = "A rail trail was formerly a train line. The train tracks have been removed and the line has been resurfaced for recreational use such as walking or bicycling. Rail trails are usually flat or have very gentle grades."
+  #spec.homepage      = N/A
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
