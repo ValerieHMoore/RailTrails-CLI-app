@@ -1,4 +1,5 @@
 class RailTrails::Scraper
+
   attr_accessor :homepage
   
   def initialize(homepage_url)
@@ -9,23 +10,27 @@ class RailTrails::Scraper
     doc = Nokogiri::HTML(open(self.homepage))
       doc.css("div.trails div.row").each do |trail|
         name = trail.css("div.column.details")[0].css("span")[0].text
-        url = trail.css("div.column.details a").attr("href").value
         length = trail.css("div.column.details")[0].css("span")[1].text
-        state = trail.css("div.column.details")[0].css("span")[3].text
-        surface = trail.css("div.column.details")[0].css("span")[4].text
-        RailTrails::RailTrail.create(name, url, length, state, surface)
+        url = trail.css("div.column.details a").attr("href").value
+        RailTrails::RailTrail.create(name, url, length)
       end
+    trail_list
+  end
+
+  def trail_list
+    RailTrails::RailTrail.all.each.with_index(1) do |trail, index|
+      puts "#{index}. #{trail.name} - Length: #{trail.length}"
+    end
   end
   
-def scrape_details
-  #railtrails.all.each do |trail|
-  #open the individual trail url
-  #scrape the info there
-  #store that stuff in the object
-  RailTrails::RailTrail.all each do |trail|
-    doc = Nokogiri::HTML(open(trail.url))
-    
-  end
+def self.scrape_details(url)
+  details = {}
+    page = Nokogiri::HTML(open(trail.url))
+    trail[:states] = trail.css("div.column.details")[0].css("span")[3].text
+    trail[:surface] = trail.css("div.column.details")[0].css("span")[4].text
+    trail[:endpoints] = trail.css("div strong").css("span").text
+    trail[:description] = trail.css("trail-description").attr("p").text
+    trail
 end
 
 end
