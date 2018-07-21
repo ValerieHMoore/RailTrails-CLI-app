@@ -35,10 +35,11 @@ attr_accessor :name
     if !(trail_number > 0 && trail_number <= RailTrails::RailTrail.all.length)
       try_again
       main_menu
-    else #if trail_number <= RailTrails::RailTrail.all.length
+    else
       trail = RailTrails::RailTrail.all[trail_number - 1]
       RailTrails::Scraper.scrape_details(trail)
       display_trail(trail)
+      main_menu
     end
   end
 
@@ -58,5 +59,4 @@ attr_accessor :name
   def try_again
     puts "Hmmm...try again."
   end
-
 end

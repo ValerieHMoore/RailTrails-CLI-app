@@ -23,5 +23,4 @@ class RailTrails::Scraper
       trail.endpoints = page.css("div.facts").css("span")[3].text
       trail.description = page.css("main.medium-8").text
   end
-
 end
