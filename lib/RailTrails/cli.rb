@@ -20,7 +20,7 @@ attr_accessor :name
       elsif input.downcase == "exit"
         puts "Happy Trails! Please consider making a donation to www.railstotrails.org"
         else
-          try_again
+          puts "Hmmm...try again."
           main_menu
         end
   end
@@ -28,26 +28,10 @@ attr_accessor :name
   def list_railtrails(input)
     puts "Here is a list of railtrails near you:"
     RailTrails::Scraper.new("https://www.traillink.com/trailsearch/?mmloc=" + input).scrape
-    enter_number
-    trail_number = gets.strip.to_i
-    if trail_number <= RailTrails::RailTrail.all.length
-      trail_details(trail_number)
-      else try_again
-    end
-  end
-
-  def trail_details(trail_number)
-    #RailTrails::Scraper.new("https://www.traillink.com/trailsearch/?mmloc=" + input).scrape_details
-    
-    puts "#{trail.states}, #{trail.surface}, #{trail.endpoints}, #{trail.description}"
-  end
-
-  def enter_number
     puts "Enter the trail number to get more details"
+    trail_number = gets.strip.to_i
+    RailTrails::RailTrail.all[trail_number-1]
+    #scrape_details(trail_url)
   end
      
-  def try_again
-    puts "Hmmm...try again."
-  end
-  
 end
