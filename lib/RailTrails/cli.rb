@@ -12,6 +12,7 @@ attr_accessor :name
   end
 
   def main_menu
+    RailTrails::RailTrail.all.clear
     puts "Please enter a five-digit zip code"
     puts "Type exit to exit the program"
     input = gets.strip
@@ -20,7 +21,7 @@ attr_accessor :name
       elsif input.downcase == "exit"
         puts "Happy Trails! Please consider making a donation to www.railstotrails.org"
         else
-          puts "Hmmm...try again."
+          try_again
           main_menu
         end
   end
@@ -30,8 +31,23 @@ attr_accessor :name
     RailTrails::Scraper.new("https://www.traillink.com/trailsearch/?mmloc=" + input).scrape
     puts "Enter the trail number to get more details"
     trail_number = gets.strip.to_i
-    RailTrails::RailTrail.all[trail_number-1]
-    #scrape_details(trail_url)
+      if trail_number <= RailTrails::RailTrail.all.length
+        RailTrails::RailTrail.select.with_index do |trail, index|
+        trail_match?(index)
+        scrape_details(url)
+      else
+      try_again
+      main_menu
+      end
+  end
+
+  def trail_match?
+    if trail_number == trail.index-1
+      trail.url
+  end
+  
+  def try_again
+    puts "Hmmm...try again."
   end
      
 end

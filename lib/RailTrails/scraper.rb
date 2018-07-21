@@ -23,18 +23,14 @@ class RailTrails::Scraper
     end
   end
 
-  def scrape_details(trail_url)
+  def scrape_details(url)
     details = {}
-    RailTrails::RailTrail.all.each.with_index(1) do |trail, index|
-      trail.url
-      #I only need the trail.url for the trail# the user has chosen
     page = Nokogiri::HTML(open(trail.url))
       trail[:states] = trail.css("div.column.details")[0].css("span")[3].text
       trail[:surface] = trail.css("div.column.details")[0].css("span")[4].text
       trail[:endpoints] = trail.css("div strong").css("span").text
       trail[:description] = trail.css("trail-description").attr("p").text
       details
-      end
   end
 
 end
