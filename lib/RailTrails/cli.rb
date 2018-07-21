@@ -18,12 +18,12 @@ attr_accessor :name
     input = gets.strip
     if input =~ /\A[0-9]{5}\z/
       list_railtrails(input)
-      elsif input.downcase == "exit"
-        puts "Happy Trails! Please consider making a donation to www.railstotrails.org"
-        else
-          try_again
-          main_menu
-        end
+    elsif input.downcase == "exit"
+      puts "Happy Trails! Please consider making a donation to www.railstotrails.org"
+    else
+      try_again
+      main_menu
+    end
   end
   
   def list_railtrails(input)
@@ -31,23 +31,17 @@ attr_accessor :name
     RailTrails::Scraper.new("https://www.traillink.com/trailsearch/?mmloc=" + input).scrape
     puts "Enter the trail number to get more details"
     trail_number = gets.strip.to_i
-      if trail_number <= RailTrails::RailTrail.all.length
-        RailTrails::RailTrail.select.with_index do |trail, index|
-        trail_match?(index)
-        scrape_details(url)
-      else
+    if !(trail_number > 0 && trail_number <= RailTrails::RailTrail.all.length)
       try_again
       main_menu
-      end
+    else #if trail_number <= RailTrails::RailTrail.all.length
+      trail = RailTrails::RailTrail.all[trail_number - 1]
+      RailTrails::Scraper.scrape_details(trail)
+      display_trail(trail)
+    end
   end
 
-  def trail_match?
-    if trail_number == trail.index-1
-      trail.url
-  end
-  
   def try_again
     puts "Hmmm...try again."
   end
-     
 end

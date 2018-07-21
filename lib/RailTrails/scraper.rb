@@ -19,18 +19,17 @@ class RailTrails::Scraper
 
   def trail_list
     RailTrails::RailTrail.all.each.with_index(1) do |trail, index|
-      puts "#{index}. #{trail.name} - Length: #{trail.length}"
+      puts "#{index}. #{trail.name} - #{trail.length}"
     end
   end
 
-  def scrape_details(url)
-    details = {}
+  def self.scrape_details(trail)
+    binding.pry
     page = Nokogiri::HTML(open(trail.url))
-      trail[:states] = trail.css("div.column.details")[0].css("span")[3].text
-      trail[:surface] = trail.css("div.column.details")[0].css("span")[4].text
-      trail[:endpoints] = trail.css("div strong").css("span").text
-      trail[:description] = trail.css("trail-description").attr("p").text
-      details
+      trail.states = page.css("div.column.details")[0].css("span")[3].text
+      trail.surface = page.css("div.column.details")[0].css("span")[4].text
+      trail.endpoints = page.css("div strong").css("span").text
+      trail.description = page.css("trail-description").attr("p").text
   end
 
 end
