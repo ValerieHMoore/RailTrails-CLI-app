@@ -29,6 +29,7 @@ attr_accessor :name
   def list_railtrails(input)
     puts "Here is a list of railtrails near you:"
     RailTrails::Scraper.new("https://www.traillink.com/trailsearch/?mmloc=" + input).scrape
+    trail_list
     puts "Enter the trail number to get more details"
     trail_number = gets.strip.to_i
     if !(trail_number > 0 && trail_number <= RailTrails::RailTrail.all.length)
@@ -41,7 +42,21 @@ attr_accessor :name
     end
   end
 
+  def trail_list
+    RailTrails::RailTrail.all.each.with_index(1) do |trail, index|
+      puts "#{index}. #{trail.name} - #{trail.length}"
+    end
+  end
+
+  def display_trail(trail)
+    puts "Here are the #{trail.name} details:\n
+    Length: #{trail.length}, State(s): #{trail.states}, Surface: #{trail.surface}\n
+    Endpoints: #{trail.endpoints}\n
+    Description: #{trail.description}"
+  end
+
   def try_again
     puts "Hmmm...try again."
   end
+
 end
