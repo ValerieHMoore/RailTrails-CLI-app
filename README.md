@@ -1,8 +1,8 @@
 # RailTrails
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/RailTrails`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to RailTrails! Many abandoned railroad lines have been changed into recreational trails for bicycling, walking, horseback riding, snowmobiling, etc. They typically have gentle grades, wildlife, and scenic views.
 
-TODO: Delete this and the text above, and describe your gem
+This app allows you to enter your zip code and get a list of trails near you. Then you can choose one of the trails on the list to see more details: length in miles, state(s) where it’s located, surface (gravel, paved, etc.), endpoints, and a full description of the trail. Happy Trails!
 
 ## Installation
 
@@ -22,7 +22,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Go to the terminal prompt and cd to the bin directory.
+2. Type ruby railtrails to start the program.
+3. Follow the prompts to enter your zip code.
+4. Once the list of rail trails comes up, follow the prompt to choose a rail trail and get more details about it.
+5. Follow the prompts to start over with another zip code or exit the program.
+6. Have fun and Happy Trails!
 
 ## Development
 
