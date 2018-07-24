@@ -22,12 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-1. Go to the terminal prompt and cd to the bin directory.
-2. Type ruby railtrails to start the program.
-3. Follow the prompts to enter your zip code.
-4. Once the list of rail trails comes up, follow the prompt to choose a rail trail and get more details about it.
-5. Follow the prompts to start over with another zip code or exit the program.
-6. Have fun and Happy Trails!
+1. Go to the terminal prompt and type ruby bin/railtrails.
+2. Follow the prompts to enter your zip code.
+3. Once the list of rail trails comes up, follow the prompt to choose a rail trail and get more details about it.
+4. Follow the prompts to start over with another zip code or exit the program.
+5. Have fun and Happy Trails!
 
 ## Development
 
